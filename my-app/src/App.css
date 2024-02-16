@@ -1,38 +1,142 @@
-.App {
+
+
+/* Define color scheme and fonts */
+:root {
+  --primary-color: #4caf50; /* Primary button and link color */
+  --secondary-color: #ff9800; /* Secondary accents */
+  --background-color: #fff; /* Background color */
+  --text-color: #333; /* Primary text color */
+  --text-color-light: #fff; /* Light text color for use on dark backgrounds */
+  --font-primary: 'Roboto', sans-serif; /* Primary font */
+}
+
+/* Global styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-primary);
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none; /* Removes underline from links */
+}
+
+a:hover {
+  text-decoration: underline; /* Adds underline on hover for links */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  background-color: var(--primary-color);
+  color: var(--text-color-light);
+  padding: 20px 0;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header h1 {
+  margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.search-form {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 20px 0;
 }
 
-.App-link {
-  color: #61dafb;
+.search-form input[type="text"] {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  margin-right: 10px;
+  border: 2px solid var(--secondary-color);
+  border-radius: 4px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.search-form button {
+  background-color: var(--primary-color);
+  color: var(--text-color-light);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.search-button:hover {
+  background-color: #388e3c; /* Adjust the color as needed */
+  color: var(--text-color-light);
+}
+
+.recipe-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 0;
+}
+
+.recipe-item {
+  cursor: pointer;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+.recipe-item:hover {
+  background-color: #f0f0f0;
+}
+.recipe-details {
+  margin-top: 10px;
+}
+
+.recipe-item img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.recipe-item-content {
+  padding: 15px;
+}
+
+.recipe-item-title {
+  margin: 0 0 10px 0;
+  color: var(--primary-color);
+}
+
+.recipe-item-description {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .search-form {
+      flex-direction: column;
+      align-items: center;
   }
-  to {
-    transform: rotate(360deg);
+
+  .search-form input[type="text"] {
+      margin: 0 0 10px 0;
   }
+
+  .search-form button {
+      width: 100%;
+      max-width: 200px;
+  }
+}
+
+/* Button and input focus styles for accessibility */
+.search-form input[type="text"]:focus,
+.search-form button:focus {
+  outline: 3px solid var(--secondary-color);
 }
