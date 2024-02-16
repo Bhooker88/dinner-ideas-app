@@ -140,3 +140,20 @@ a:hover {
 .search-form button:focus {
   outline: 3px solid var(--secondary-color);
 }
+
+.app-description {
+  margin-bottom: 20px; /* Adds some space between the description and the search form */
+  padding: 10px;
+  background-color: #f9f9f9; /* Light background for the description section */
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Soft shadow for depth */
+}
+
+.app-description h2 {
+  margin-top: 0;
+}
+
+.app-description p {
+  margin-bottom: 0;
+  line-height: 1.6;
+}

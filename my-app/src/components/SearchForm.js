@@ -18,7 +18,7 @@ function SearchForm({ onSearch }) {
         onChange={(e) => setIngredients(e.target.value)}
         placeholder="Enter ingredients separated by commas"
       />
-      <button className="search-button" type="submit">Search Recipes</button> {/* Add className for button */}
+      <button className="search-button" type="submit">Search For Recipes</button> {/* Add className for button */}
     </form>
   );
 }

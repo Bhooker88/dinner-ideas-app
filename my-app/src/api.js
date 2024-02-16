@@ -18,7 +18,7 @@ export const fetchRecipes = async (ingredients) => {
 };
 
 export const fetchRecipeDetails = async (id) => {
-  const url = `${API_BASE_URL}/${id}/information?includeNutrition=false&apiKey=${API_KEY}`;
+  const url = `${API_BASE_URL}/${id}/information?includeNutrition=true&apiKey=${API_KEY}`;
 
   try {
     const response = await fetch(url);
@@ -26,7 +26,7 @@ export const fetchRecipeDetails = async (id) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    return data; // This will be the detailed recipe object
+    return data; // This will be the detailed recipe object, including ingredients and nutrition data
   } catch (error) {
     console.error(`Could not fetch recipe details for ID ${id}: `, error);
     return null; // Return null in case of error
