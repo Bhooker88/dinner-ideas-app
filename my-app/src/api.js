@@ -10,10 +10,10 @@ export const fetchRecipes = async (ingredients) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    return data; // This will be an array of recipe objects
+    return data; 
   } catch (error) {
     console.error("Could not fetch recipes: ", error);
-    return []; // Return an empty array in case of error
+    return []; 
   }
 };
 
@@ -26,9 +26,9 @@ export const fetchRecipeDetails = async (id) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    return data; // This will be the detailed recipe object, including ingredients and nutrition data
+    return data; 
   } catch (error) {
     console.error(`Could not fetch recipe details for ID ${id}: `, error);
-    return null; // Return null in case of error
+    return null; 
   }
 };

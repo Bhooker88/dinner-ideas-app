@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import SearchForm from './components/SearchForm';
 import RecipeList from './components/RecipeList';
-import RecipeDetails from './components/RecipeDetails'; // Assuming you have this component
+import RecipeDetails from './components/RecipeDetails'; 
 import { fetchRecipes, fetchRecipeDetails } from './api';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
   const handleSearch = async (ingredients) => {
     const results = await fetchRecipes(ingredients);
     setRecipes(results);
-    setSelectedRecipe(null); // Reset to show search results
+    setSelectedRecipe(null);
   };
 
   const handleSelectRecipe = async (id) => {
@@ -21,7 +21,7 @@ function App() {
   };
 
   const handleBackToResults = () => {
-    setSelectedRecipe(null); // Hide details and show search results again
+    setSelectedRecipe(null); 
   };
 
   return (

@@ -13,12 +13,12 @@ function SearchForm({ onSearch }) {
     <form className="search-form" onSubmit={handleSubmit}>
       <input
         type="text"
-        className="search-input" // Add className if you have specific styles
+        className="search-input" 
         value={ingredients}
         onChange={(e) => setIngredients(e.target.value)}
         placeholder="Enter ingredients separated by commas"
       />
-      <button className="search-button" type="submit">Search For Recipes</button> {/* Add className for button */}
+      <button className="search-button" type="submit">Search For Recipes</button> 
     </form>
   );
 }

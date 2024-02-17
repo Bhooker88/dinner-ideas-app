@@ -19,7 +19,6 @@ function RecipeDetails({ recipe }) {
         ))}
       </ul>
       <h3>Instructions:</h3>
-      {/* Ensure the instructions are rendered as HTML */}
       <div dangerouslySetInnerHTML={createMarkup(recipe.instructions)} />
     </div>
   );
