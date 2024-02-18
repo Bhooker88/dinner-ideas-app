@@ -1,8 +1,8 @@
 const API_BASE_URL = "https://api.spoonacular.com/recipes";
 const API_KEY = process.env.REACT_APP_SPOONACULAR_API_KEY;
 
-export const fetchRecipes = async (ingredients) => {
-  const url = `${API_BASE_URL}/findByIngredients?ingredients=${encodeURIComponent(ingredients)}&number=10&apiKey=${API_KEY}`;
+export const fetchRecipes = async (ingredients, intolerances = '') => {
+  const url = `${API_BASE_URL}/complexSearch?query=${encodeURIComponent(ingredients)}&number=10&intolerances=${encodeURIComponent(intolerances)}&apiKey=${API_KEY}`;
 
   try {
     const response = await fetch(url);
@@ -10,10 +10,10 @@ export const fetchRecipes = async (ingredients) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    return data; 
+    return data.results || []; 
   } catch (error) {
     console.error("Could not fetch recipes: ", error);
-    return []; 
+    return [];
   }
 };
 
@@ -25,10 +25,9 @@ export const fetchRecipeDetails = async (id) => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    const data = await response.json();
-    return data; 
+    return await response.json();
   } catch (error) {
     console.error(`Could not fetch recipe details for ID ${id}: `, error);
-    return null; 
+    return null;
   }
 };
