@@ -33,7 +33,7 @@ function SearchForm({ onSearch }) {
         type="text"
         value={ingredients}
         onChange={(e) => setIngredients(e.target.value)}
-        placeholder="Enter ingredients separated by commas"
+        placeholder="Enter ingredients separated by commas or search for specific meal types"
       />
       <div className="intolerances">
         {Object.keys(intolerances).map((intolerance) => (
@@ -53,3 +53,4 @@ function SearchForm({ onSearch }) {
 }
 
 export default SearchForm;
+

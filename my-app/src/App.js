@@ -9,11 +9,10 @@ function App() {
     const [recipes, setRecipes] = useState([]);
     const [selectedRecipe, setSelectedRecipe] = useState(null);
 
-    // Update the handleSearch function to accept intolerances as a parameter
     const handleSearch = async (ingredients, intolerances) => {
         const results = await fetchRecipes(ingredients, intolerances);
         setRecipes(results);
-        setSelectedRecipe(null); // Reset selection when searching
+        setSelectedRecipe(null); 
     };
 
     const handleSelectRecipe = async (id) => {
@@ -22,7 +21,7 @@ function App() {
     };
 
     const handleBackToResults = () => {
-        setSelectedRecipe(null); // Return to search results
+        setSelectedRecipe(null); 
     };
 
     return (
@@ -32,14 +31,13 @@ function App() {
                 <section className="app-description">
                     <h2>Welcome to Dinner Ideas!</h2>
                     <p>
-                        Struggling to decide what to cook? Use this app to find recipes based on ingredients you already have. Simply enter the ingredients you want to use, separated by commas, in the search box below and discover a variety of recipes to try. Whether you have chicken, rice, vegetables, or any other ingredients, we'll help you find the perfect recipe to match your pantry.
+                    Struggling to decide what to cook? Use this app to find recipes based on ingredients you already have or specify the type of dish you're craving, like "slow cooker", "instant pot", "dessert", or "pancakes". Just enter your ingredients or dish type into the search box, and you can even specify intolerances to tailor the recipes to your dietary needs. Discover a variety of recipes to try, complete with ingredients you'll need to make the perfect dish. Let's find your next favorite meal!
                     </p>
                 </section>
-                {/* SearchForm now needs to handle the collection and submission of multiple intolerances */}
                 <SearchForm onSearch={handleSearch} />
                 {selectedRecipe ? (
                     <>
-                        <button onClick={handleBackToResults}>Back to Results</button>
+                        <button className='back-to-results' onClick={handleBackToResults}>Back to Results</button>
                         <RecipeDetails recipe={selectedRecipe} />
                     </>
                 ) : (
