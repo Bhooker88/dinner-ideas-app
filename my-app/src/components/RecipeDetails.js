@@ -1,21 +1,49 @@
-// RecipeDetails.js
-import React from 'react';
+import React, { useState } from 'react';
 
 function RecipeDetails({ recipe }) {
+  const [servings, setServings] = useState(recipe.servings);
+
   const createMarkup = (htmlContent) => {
     return { __html: htmlContent };
   };
 
+
+  // Simplified and corrected fraction conversion function
+  const decimalToCommonFraction = (decimal) => {
+    if (decimal === 0) return '';
+    if (decimal <= 1/8) return '1/8';
+    if (decimal <= 1/4) return '1/4';
+    if (decimal <= 1/3) return '1/3';
+    if (decimal <= 1/2) return '1/2';
+    if (decimal <= 2/3) return '2/3';
+    if (decimal <= 3/4) return '3/4';
+    return '1';
+  };
+
+  const formatIngredientAmount = (amount) => {
+    const wholeNumber = Math.floor(amount);
+    const fractionPart = amount - wholeNumber;
+    const commonFraction = decimalToCommonFraction(fractionPart);
+
+    return `${wholeNumber > 0 ? `${wholeNumber} ` : ''}${commonFraction}`.trim();
+  };
+
+  const adjustIngredientAmounts = (ingredient) => {
+    const amountPerServing = ingredient.amount / recipe.servings;
+    const adjustedAmount = amountPerServing * servings;
+    return `${formatIngredientAmount(adjustedAmount)} ${ingredient.unit ? ingredient.unit + ' ' : ''}${ingredient.name}`;
+  };
+
   const downloadRecipe = () => {
     let recipeContent = `
-      Recipe Name: ${recipe.title}
-      Servings: ${recipe.servings}
-      Ready in: ${recipe.readyInMinutes} minutes
+Recipe Name: ${recipe.title}
+Servings: ${servings}
+Ready in: ${recipe.readyInMinutes} minutes
 
-      Ingredients:
-    `;
+Ingredients:
+`;
     recipe.extendedIngredients.forEach(ingredient => {
-      recipeContent += `- ${ingredient.original}\n`;
+      recipeContent += `- ${adjustIngredientAmounts(ingredient)}\n`;
     });
 
     recipeContent += "\nInstructions:\n";
@@ -35,12 +63,21 @@ function RecipeDetails({ recipe }) {
     <div className="recipe-details">
       <h2>{recipe.title}</h2>
       <img src={recipe.image} alt={recipe.title} />
-      <p>Servings: {recipe.servings}</p>
+      <div>
+        <label htmlFor="servings">Servings:</label>
+        <input
+          type="number"
+          id="servings"
+          value={servings}
+          onChange={e => setServings(parseInt(e.target.value, 10))}
+          min="1"
+        />
+      </div>
       <p>Ready in: {recipe.readyInMinutes} minutes</p>
       <h3>Ingredients:</h3>
       <ul>
         {recipe.extendedIngredients.map((ingredient, index) => (
-          <li key={index}>{ingredient.original}</li>
+          <li key={index}>{adjustIngredientAmounts(ingredient)}</li>
         ))}
       </ul>
       <h3>Instructions:</h3>
