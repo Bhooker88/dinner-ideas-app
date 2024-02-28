@@ -8,11 +8,14 @@ import { fetchRecipes, fetchRecipeDetails } from './api';
 function App() {
     const [recipes, setRecipes] = useState([]);
     const [selectedRecipe, setSelectedRecipe] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleSearch = async (ingredients, intolerances) => {
+        setIsLoading(true);
         const results = await fetchRecipes(ingredients, intolerances);
         setRecipes(results);
         setSelectedRecipe(null); 
+        setIsLoading(false);
     };
 
     const handleSelectRecipe = async (id) => {
@@ -35,6 +38,8 @@ function App() {
                     </p>
                 </section>
                 <SearchForm onSearch={handleSearch} />
+                {isLoading && <div className="loading-icon">
+                <div className="spinner"></div></div>}
                 {selectedRecipe ? (
                     <>
                         <button className='back-to-results' onClick={handleBackToResults}>Back to Results</button>
