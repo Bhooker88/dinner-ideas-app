@@ -6,7 +6,8 @@ The Dinner Ideas App is designed to help you figure out what to cook based on th
 
 - **Ingredient Input**: Easily input the ingredients you have.
 - **Recipe Suggestions**: Get recipe suggestions that match your available ingredients.
-- **Print Recipes**: Save your favorite recipes for quick access later.
+- **Print Recipes**: Print your favorite recipes for quick access later.
+- **Filter Intolerances**: Filter recipes based on any allergies or intolerances you might have.
 - **Recipe Details**: View detailed instructions and ingredient lists for each recipe.
 
 ## Getting Started
